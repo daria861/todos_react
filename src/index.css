@@ -38,3 +38,8 @@ span{
 .input-field input:focus+label{
   display: none;
 }
+
+.date{
+  font-size: 11px;
+  color: rgb(158, 155, 152);
+}
