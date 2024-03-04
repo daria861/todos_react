@@ -1,0 +1,40 @@
+@import 'materialize-css/dist/css/materialize.min.css';
+
+body{
+  margin: 0;
+  padding: 0;
+  background-color: rgb(217,226,233);
+}
+
+span{
+  color: rgb(117,142,158);
+}
+
+.todo{
+  margin-bottom: 1.5rem;
+}
+
+.todo.status span{
+  text-decoration: line-through;
+}
+
+.todo label{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+/* cursor: pointer; */
+  background: rgb(202,211,217);
+  padding: 1rem;
+  font-size: 20px;
+}
+
+.todo i{
+  font-style: normal;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.input-field input:focus+label{
+  display: none;
+}
