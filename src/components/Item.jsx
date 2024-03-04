@@ -1,45 +1,33 @@
 import { useState } from "react"
 
-export function Item({ title, id, status, tasks, setTasks, count, setCount, day, month, year, hours, minutes}) {
+export function Item({ title, id, status, tasks, setTasks, count, setCount, createdAt}) {
 
-    const [checked, setChecked] = useState(status)
-    const classes = ['todo'];
-    if (checked) {
+    const classes = ['todo']
+
+    if(status){
         classes.push('status')
     }
 
-  
 
-    // const updateStatus = () => {
-    //     setChecked(!checked)
-    
-    //     setTasks([...tasks.map(item => {
-    //         if (item.id === id) {
-    //             item.status = !checked;
-    //         }
-    //         return item
-    //     })])
-    // }
-    
 
     const updateStatus = () => {
-        setChecked(!checked);
-        const newTasks =[...tasks.map(item => {
+        
+        setTasks([...tasks.map(item => {
             if (item.id === id) {
-                item.status = !checked;
+                item.status = !status;
             }
             return item;
-        })];
-        setTasks(newTasks);
+        })]);
+
         // Count checked 
-        const checkedCount = newTasks.filter(item => item.status).length;
+        const checkedCount = tasks.filter(item => item.status).length;
         setCount(checkedCount);
     }
 
     const removeTask = () =>{
         setTasks([...tasks.filter(item => item.id !== id)])
         // count if the removed task
-        if (checked) {
+        if (status) {
             setCount(count - 1);
         }
     }
@@ -50,13 +38,13 @@ export function Item({ title, id, status, tasks, setTasks, count, setCount, day,
         <li className={classes.join(' ')} key={id}>
             <label>
                 <input type="checkbox"
-                    checked={checked}
+                    checked={status}
                     onChange={updateStatus}
                 />
                 <span>{title}</span>
                 <i className="material-icons red-text" onClick={removeTask}>x</i>
             </label>
-            <span className="date">{month + ' ' + day + ', ' + year + ' ' + hours + ':' + minutes}</span>
+            <span className="date">{createdAt.toLocaleString()}</span>
         </li>
     )
 }
